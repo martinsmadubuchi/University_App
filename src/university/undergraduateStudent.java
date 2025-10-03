@@ -1,31 +1,29 @@
 package university;
 
 public class undergraduateStudent extends student{
-    private string subject;
-    private int yearOfEntry ;
+    private String subject;
+    private int yearOfEntry;
 
-    public undergraduateStudent(string subject, int yearOfEntry, int StudentId,string FirstName,string LastName,double[] Marks,Address Address){
+    public undergraduateStudent(String subject, int yearOfEntry, int StudentId, String FirstName, String LastName, double[] Marks, Address Address){
         super(StudentId,FirstName,LastName,Marks,Address);
         this.subject = subject;
         this.yearOfEntry =  yearOfEntry;
     }
-      public string getSubject(){
+      public String getSubject(){
         return subject;
       }
-      public int year0fEntry(){
+      public int getYearOfEntry(){
         return yearOfEntry;
       }
 
+    @Override
     public boolean graduate() {
-        if(Average() > 50) {
-          return true;
-        }
-        return false;
+        return Average() > 60;
     }
-public string[] ToString(){
-        string subject = subject.toString();
-        string yearEntry = year0fEntry().toString();
-
-        return new string[]{subject, yearEntry};
+    @Override
+    public String toString(){
+        return super.toString() + "\n" +
+               "Subject: " + subject + "\n" +
+               "Year of Entry: " + yearOfEntry;
     }
 }

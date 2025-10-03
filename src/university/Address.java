@@ -1,13 +1,13 @@
 package university;
 
 public class Address {
-    private string streetInfo;
-    private string city;
-    private string postalcode;
-    private string province;
-    private string country;
+    private String streetInfo;
+    private String city;
+    private String postalcode;
+    private String province;
+    private String country;
 
-    public Address(string streetInfo, string city, string postalcode, string province, string country) {
+    public Address(String streetInfo, String city, String postalcode, String province, String country) {
         this.streetInfo = streetInfo;
         this.city = city;
         this.postalcode = postalcode;
@@ -15,33 +15,28 @@ public class Address {
         this.country = country;
     }
 
-    public string getStreetInfo() {
+    public String getStreetInfo() {
         return streetInfo;
     }
 
-    public string getCity() {
+    public String getCity() {
         return city;
     }
 
-    public string getPostalcode() {
+    public String getPostalcode() {
         return postalcode;
     }
 
-    public string getProvince() {
+    public String getProvince() {
         return province;
     }
 
-    public string getCountry() {
+    public String getCountry() {
         return country;
     }
 
-    public string[] ToString() {
-        string streetInfo = getStreetInfo().toString();
-        string city = getCity().toString();
-        string postalcode = getPostalcode();
-        string province = getProvince();
-        string country = getCountry();
-
-        return new string[]{streetInfo, city, postalcode, province, country};
+    @Override
+    public String toString() {
+        return streetInfo + ", " + city + ", " + postalcode + ", " + province + ", " + country;
     }
 }

@@ -2,12 +2,12 @@ package university;
 
 public class student {
     private int StudentId;
-    private string FirstName;
-    private string LastName;
+    private String FirstName;
+    private String LastName;
     private double[] Marks;
     private Address Address;
 
-   public student(int StudentId,string FirstName,string LastName,double[] Marks,Address Address){
+   public student(int StudentId, String FirstName, String LastName, double[] Marks, Address Address){
        this.StudentId = StudentId;
        this.FirstName = FirstName;
        this.LastName = LastName;
@@ -23,39 +23,41 @@ public class student {
         return StudentId;
     }
 
-    public string getFirstName() {
+    public String getFirstName() {
         return FirstName;
     }
 
-    public string getLastName() {
+    public String getLastName() {
         return LastName;
     }
 
 
-    @Override
-    public String Marks() {
-        return Marks();
+    public double[] getMarks() {
+        return Marks;
     }
 
-    public string address (){
-        return adress ;
-}
+    public Address getAddress() {
+        return Address;
+    }
 
-    public int Average(){
+    public double Average(){
         double ave = 0;
        for(int i = 0; i < Marks.length; i++) {
-           ave += Marks[i] / Marks.length;
+           ave += Marks[i];
         }
-       return (int) ave;
+       return ave / Marks.length;
    }
 
-    public string[] ToString(){
-       string Id = StudentId.toString();
-       string Name = "First Name:" +FirstName+ ",Last Name:" +LastName;
-       string address = Address.toString();
-       string ave = Average().toString();
+    @Override
+    public String toString(){
+       return "Student ID: " + StudentId + "\n" +
+              "Name: " + FirstName + " " + LastName + "\n" +
+              "Average: " + Average() + "\n" +
+              "Address: " + Address.toString();
+    }
 
-       return new string[]{Id,Name,address,ave};
-}
+    public boolean graduate() {
+        return Average() > 50;
+    }
 
 }

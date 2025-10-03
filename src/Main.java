@@ -1,4 +1,7 @@
 import university.undergraduateStudent;
+import university.graduateStudent;
+import university.student;
+import university.Address;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -6,7 +9,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        ArrayList<Student> students = new ArrayList<>();
+        ArrayList<student> students = new ArrayList<>();
         int choice;
 
         do {
@@ -44,25 +47,41 @@ public class Main {
         sc.close();
     }
 
-    private static void addUndergraduateStudent(Scanner sc, ArrayList<Student> students) {
+    private static void addUndergraduateStudent(Scanner sc, ArrayList<student> students) {
         System.out.println("\n--- Add Undergraduate Student ---");
         System.out.print("Enter name: ");
         String name = sc.nextLine();
         System.out.print("Enter ID: ");
         int id = sc.nextInt();
         sc.nextLine();
-        System.out.print("Enter major: ");
-        String major = sc.nextLine();
-        System.out.print("Enter year: ");
-        int year = sc.nextInt();
+        System.out.print("Enter subject: ");
+        String subject = sc.nextLine();
+        System.out.print("Enter year of entry: ");
+        int yearOfEntry = sc.nextInt();
         sc.nextLine();
 
+        System.out.println("Enter address details:");
+        System.out.print("Street: ");
+        String street = sc.nextLine();
+        System.out.print("City: ");
+        String city = sc.nextLine();
+        System.out.print("Postal code: ");
+        String postalCode = sc.nextLine();
+        System.out.print("Province: ");
+        String province = sc.nextLine();
+        System.out.print("Country: ");
+        String country = sc.nextLine();
+
+        Address address = new Address(street, city, postalCode, province, country);
         double[] marks = readMarks(sc);
-        students.add(new undergraduateStudent());
+        System.out.print("Enter last name: ");
+        String lastName = sc.nextLine();
+
+        students.add(new undergraduateStudent(subject, yearOfEntry, id, name, lastName, marks, address));
         System.out.println("✅ Undergraduate student added successfully!");
     }
 
-    private static void addGraduateStudent(Scanner sc, ArrayList<Student> students) {
+    private static void addGraduateStudent(Scanner sc, ArrayList<student> students) {
         System.out.println("\n--- Add Graduate Student ---");
         System.out.print("Enter name: ");
         String name = sc.nextLine();
@@ -77,8 +96,24 @@ public class Main {
         System.out.print("Enter thesis topic: ");
         String thesis = sc.nextLine();
 
+        System.out.println("Enter address details:");
+        System.out.print("Street: ");
+        String street = sc.nextLine();
+        System.out.print("City: ");
+        String city = sc.nextLine();
+        System.out.print("Postal code: ");
+        String postalCode = sc.nextLine();
+        System.out.print("Province: ");
+        String province = sc.nextLine();
+        System.out.print("Country: ");
+        String country = sc.nextLine();
+
+        Address address = new Address(street, city, postalCode, province, country);
         double[] marks = readMarks(sc);
-        students.add(new GraduateStudent(name, id, marks, subject, yearOfEntry, thesis));
+        System.out.print("Enter last name: ");
+        String lastName = sc.nextLine();
+
+        students.add(new graduateStudent(subject, yearOfEntry, thesis, id, name, lastName, marks, address));
         System.out.println("✅ Graduate student added successfully!");
     }
 
@@ -94,21 +129,21 @@ public class Main {
         return marks;
     }
 
-    private static void viewAllStudents(ArrayList<Student> students) {
+    private static void viewAllStudents(ArrayList<student> students) {
         System.out.println("\n--- All Students ---");
         if (students.isEmpty()) {
             System.out.println("No students found.");
             return;
         }
-        for (Student s : students) {
+        for (student s : students) {
             System.out.println(s);
         }
     }
 
-    private static void viewEligibleStudents(ArrayList<Student> students) {
+    private static void viewEligibleStudents(ArrayList<student> students) {
         System.out.println("\n--- Eligible Students for Graduation ---");
         boolean found = false;
-        for (Student s : students) {
+        for (student s : students) {
             if (s.graduate()) {
                 System.out.println(s);
                 found = true;
